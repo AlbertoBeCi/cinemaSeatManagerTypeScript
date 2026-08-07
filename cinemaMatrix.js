@@ -1,11 +1,11 @@
 //1- Crea una función que inicialice una matriz de asientos (un arreglo bidimensional) que represente 8 filas y 10 columnas.
 //2- Representa los asientos ocupados con un 1 y los disponibles con un 0.
-function salaCine() {
+function salaCine(probabilidadOcupado = 0.3) {
     const matrix = [];
     for (let i = 0; i < 8; i++) {
         const row = [];
         for (let j = 0; j < 10; j++) {
-            row.push(0); // Inicializa todos los asientos como disponibles (0)
+            row.push(Math.random() < probabilidadOcupado ? 1 : 0); // Cada asiento nace ocupado (1) u disponible (0) al azar
         }
         matrix.push(row);
     }

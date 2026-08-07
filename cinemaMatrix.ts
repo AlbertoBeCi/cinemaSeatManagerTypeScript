@@ -3,12 +3,12 @@
 
 export {};
 
-function salaCine(): (0 | 1)[][] {
+function salaCine(probabilidadOcupado: number = 0.3): (0 | 1)[][] {
     const matrix: (0 | 1)[][] = [];
     for (let i = 0; i < 8; i++) {
         const row: (0 | 1)[] = [];
         for (let j = 0; j < 10; j++) {
-            row.push(0); // Inicializa todos los asientos como disponibles (0)
+            row.push(Math.random() < probabilidadOcupado ? 1 : 0); // Cada asiento nace ocupado (1) u disponible (0) al azar
         }
         matrix.push(row);
     }
@@ -20,14 +20,14 @@ const salaCineAlpha = salaCine();
 //Crea un función que muestre el estado actual de la sala imprimiendo la matriz en la consola usando: X para los asientos ocupados y L para los asientos disponibles. Incluye números de fila y columna para mayor claridad.
 function mostrarSala(matrix: (0 | 1)[][]): void {
     // Imprime los números de columna
-    let header = '  ';
+    let header = ' ';
     for (let j = 0; j < matrix[0].length; j++) {
         header += j + ' ';
     }
     console.log(header);
 
     for (let i = 0; i < matrix.length; i++) {
-        let rowString = i + '  ';
+        let rowString = i + ' '; // Imprime el número de fila
         for (const seat of matrix[i]) {
             rowString += seat === 1 ? 'X ' : 'L ';
         }
