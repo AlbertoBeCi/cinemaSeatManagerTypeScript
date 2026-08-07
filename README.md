@@ -1,112 +1,198 @@
-# Hello World with Typescript
+# 🎬 Gestor de Asientos
 
-<!-- hide -->
-> By [@ehiber](https://github.com/ehiber) and contributors at [4Geeks Academy](https://4geeksacademy.com/)
+<p align="center">
+  <img src="assets/banner.png" alt="Gestor de Asientos — banner" width="100%">
+</p>
 
-[![build by developers](https://img.shields.io/badge/build_by-Developers-blue)](https://4geeks.com)
-[![twitter](https://img.shields.io/twitter/follow/4geeksacademy?style=social&logo=twitter)](https://twitter.com/4geeksacademy)
+<p align="center">
+  <strong>Aplicación web para visualizar, consultar y reservar asientos de una sala de cine de forma sencilla e intuitiva.</strong>
+</p>
 
-*Estas instrucciones estan disponibles en [espanol](./README.es.md).*
-<!-- endhide -->
-Start coding a TypeScript/HTML/CSS website in 30 seconds by opening this template using 4Geeks' [One-Click Coding](https://s.4geeks.com/start?repo=https://github.com/4GeeksAcademy/typescript-hello) or locally on your computer.
+<p align="center">
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white">
+  <img src="https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white">
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white">
+</p>
 
-## Before you begin
+---
 
-Install the packages by typing:
+## 📌 Sobre el proyecto
+
+**Gestor de Asientos** es un proyecto práctico centrado en la gestión visual de los asientos de una sala.
+
+La aplicación representa una sala con **8 filas y 10 columnas**, donde cada asiento puede estar disponible u ocupado. El usuario puede consultar el estado de la sala, reservar asientos libres y buscar posiciones consecutivas.
+
+El proyecto transforma una lógica basada en matrices en una interfaz web visual e interactiva.
+
+---
+
+## ✨ Funcionalidades
+
+- 🎟️ Representación visual de una sala de **8 × 10 asientos**.
+- 🟢 Identificación de asientos disponibles.
+- 🔴 Identificación de asientos ocupados.
+- 🖱️ Reserva de asientos indicando fila y columna.
+- 📊 Contador de asientos disponibles y ocupados.
+- 🔎 Búsqueda de asientos libres consecutivos.
+- 🔄 Generación de nuevas salas con una distribución diferente.
+- 💻 Interfaz limpia y sencilla.
+
+---
+
+## 🧠 Lógica principal
+
+El estado de la sala se representa mediante una matriz bidimensional:
+
+```ts
+type Asiento = 0 | 1;
+type Sala = Asiento[][];
+
+// 0 → disponible
+// 1 → ocupado
+```
+
+### `salaCine()`
+
+Genera la matriz inicial de asientos y determina aleatoriamente qué posiciones están ocupadas.
+
+### `mostrarSala()`
+
+Recorre la matriz y muestra el estado de cada asiento, facilitando también la depuración desde la consola.
+
+### `reservarAsiento()`
+
+Recibe una fila y una columna, comprueba si el asiento está disponible y, si lo está, lo marca como ocupado.
+
+### `contarAsientos()`
+
+Recorre la matriz para obtener el número de asientos disponibles y ocupados.
+
+### `buscarAsientosContiguos()`
+
+Analiza las filas de la sala para localizar asientos libres consecutivos y devolver sus posiciones.
+
+---
+
+## 🖥️ Capturas
+
+### Aplicación
+
+<p align="center">
+  <img src="assets/aplicacion.png" alt="Interfaz del Gestor de Asientos" width="650">
+</p>
+
+### Implementación
+
+<p align="center">
+  <img src="assets/codigo.png" alt="Código TypeScript del Gestor de Asientos" width="100%">
+</p>
+
+---
+
+## 🛠️ Tecnologías
+
+| Tecnología | Uso |
+|---|---|
+| **TypeScript** | Lógica y gestión de la matriz de asientos |
+| **Vite** | Entorno de desarrollo y build |
+| **HTML5** | Estructura de la interfaz |
+| **CSS3** | Diseño y estilos visuales |
+| **JavaScript / DOM** | Interacción con la interfaz |
+
+---
+
+## 🚀 Instalación y ejecución
+
+### 1. Clonar el repositorio
+
+```bash
+git clone https://github.com/TU-USUARIO/gestor-asientos.git
+```
+
+### 2. Entrar en el proyecto
+
+```bash
+cd gestor-asientos
+```
+
+### 3. Instalar dependencias
 
 ```bash
 npm install
 ```
 
-## How do I run my website to see live changes?
-
-Type on the command line:
+### 4. Iniciar el servidor de desarrollo
 
 ```bash
-npm run start
+npm run dev
 ```
 
-Then open your local URL in the browser (usually `http://localhost:5173`).
+Vite mostrará en la terminal la dirección local de la aplicación, normalmente:
 
-## How do I run this in GitHub Codespaces?
-
-Run the same development server:
-
-```bash
-npm run start
+```text
+http://localhost:5173
 ```
 
-Vite is configured to listen on `0.0.0.0`, so Codespaces can detect and forward port `5173` automatically.
+---
 
-## How do I run only the TypeScript check?
+## 📁 Estructura del proyecto
 
-Use this command to validate only TypeScript without starting Vite:
-
-```bash
-npm run typecheck
+```text
+gestor-asientos/
+├── assets/
+│   ├── banner.png
+│   ├── aplicacion.png
+│   └── codigo.png
+├── public/
+├── src/
+│   ├── cinemaMatrix.ts
+│   ├── main.ts
+│   └── style.css
+├── index.html
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+└── README.md
 ```
 
-## How do I run `main.ts` from the terminal?
+---
 
-If you want to execute `./src/main.ts` directly and see `console.log` output in the terminal, run:
+## 🎯 Objetivo de aprendizaje
 
-```bash
-npm run console
-```
+Este proyecto permite practicar conceptos fundamentales de programación y desarrollo frontend:
 
-This command is already wired to `./src/main.ts`.
+- Arrays y matrices bidimensionales.
+- Tipado con TypeScript.
+- Funciones y parámetros.
+- Bucles y recorridos de estructuras.
+- Condicionales.
+- Gestión del estado de una aplicación.
+- Manipulación del DOM.
+- Separación entre lógica y presentación.
+- Desarrollo con Vite.
 
-## Where do I write my code?
+---
 
-It depends on the language:
+## 📈 Posibles mejoras
 
-- `./src/main.ts` for TypeScript logic.
-- `./src/style.css` for styles (Tailwind CSS v4 is already imported).
-- `./index.html` for the HTML shell.
+- Persistencia de reservas mediante `localStorage`.
+- Selección de asientos directamente desde la interfaz.
+- Confirmación de reserva.
+- Diferentes precios según la ubicación.
+- Gestión de varias salas.
+- API y base de datos.
+- Sistema de usuarios.
+- Animaciones y feedback visual.
 
-You can add more files as needed, just make sure to import them from `main.ts`.
+---
 
-Note: if you can see the "Hello Rigo" card and the message "If you can see this, Tailwind is working.", Tailwind is configured correctly.
+## 👨‍💻 Autor
 
-## Troubleshooting
+Proyecto desarrollado como práctica de programación y desarrollo web, aplicando TypeScript a un caso de uso realista de gestión de asientos.
 
-### I don't see my changes...
+---
 
-Every time you change any file inside `./src`, the website refreshes automatically (hot reload).
-
-If changes still don't appear, refresh clearing cache:
-
-- Mac: `Cmd + Shift + R`
-- Windows/Linux: `Ctrl + Shift + R`
-
-## How do I include more images in my project?
-
-Add them inside `./public` and reference them in HTML using `/your-image-name.ext`.
-
-Example:
-
-```html
-<img src="/rigo-baby.jpg" alt="Rigo" />
-```
-
-## How do I include more TypeScript files?
-
-Add files into `./src` and import them from `main.ts`.
-
-Example:
-
-```ts
-import { myVar } from "./file2";
-```
-
-## How do I publish the website?
-
-This boilerplate is compatible with Vercel in one step.
-
-<!-- hide -->
-## Contributors
-
-This template was built as part of the [4Geeks Academy Coding Bootcamp](https://4geeksacademy.com/us/coding-bootcamp) by [ehiber](https://github.com/ehiber) and contributors. Find out more about our [AI Engineering Course](https://4geeksacademy.com/us/coding-bootcamps/ai-engineering), [Full Stack Developer Course](https://4geeksacademy.com/us/coding-bootcamps/part-time-full-stack-developer), and [Data Science Bootcamp](https://4geeksacademy.com/us/coding-bootcamps/datascience-machine-learning).
-
-You can find other templates and resources like this at the [school's GitHub page](https://github.com/4geeksacademy/).
-<!-- endhide -->
+<p align="center">
+  <sub>Gestor de Asientos · TypeScript + Vite</sub>
+</p>
