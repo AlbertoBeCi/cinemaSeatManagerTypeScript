@@ -34,4 +34,40 @@ function mostrarSala(matrix: (0 | 1)[][]): void {
         console.log(rowString);
     }
 }
+console.log("Estado inicial de la sala:");
+mostrarSala(salaCineAlpha);
+
+//Implementa una función que permita reservar un asiento específico dado su número de fila y columna. La función debe verificar si el asiento está disponible antes de marcarlo como ocupado y devolver un mensaje indicando si la reserva fue exitosa o si el asiento ya estaba ocupado.
+function reservarAsiento(matrix: (0 | 1)[][], fila: number, columna: number): string {
+    if (fila < 0 || fila >= matrix.length || columna < 0 || columna >= matrix[0].length) {
+        return 'Asiento inválido';
+    }
+    if (matrix[fila][columna] === 1) {
+        return 'El asiento ya está ocupado';
+    }
+    matrix[fila][columna] = 1;
+    return 'Reserva exitosa';
+}
+console.log("Intentando reservar el asiento en la fila 2, columna 3:");
+console.log(reservarAsiento(salaCineAlpha, 2, 3));
+mostrarSala(salaCineAlpha);
+
+//Crear una funcion que cuente el número de asientos ocupados y disponibles en la sala.
+function contarAsientos(matrix: (0 | 1)[][]): { ocupados: number; disponibles: number } {
+    let ocupados = 0;
+    let disponibles = 0;
+    for (const row of matrix) {
+        for (const seat of row) {
+            if (seat === 1) {
+                ocupados++;
+            } else {
+                disponibles++;
+            }
+        }
+    }
+    return { ocupados, disponibles };
+}
+console.log("Conteo de asientos:");
+console.log(contarAsientos(salaCineAlpha));
+
 mostrarSala(salaCineAlpha);
