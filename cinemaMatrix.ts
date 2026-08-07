@@ -3,7 +3,7 @@
 
 export {};
 
-function salaCine(probabilidadOcupado: number = 0.3): (0 | 1)[][] {
+function salaCine(probabilidadOcupado: number = 0.5): (0 | 1)[][] {
     const matrix: (0 | 1)[][] = [];
     for (let i = 0; i < 8; i++) {
         const row: (0 | 1)[] = [];
@@ -15,12 +15,10 @@ function salaCine(probabilidadOcupado: number = 0.3): (0 | 1)[][] {
     return matrix;
 }
 
-const salaCineAlpha = salaCine();
-
 //Crea un función que muestre el estado actual de la sala imprimiendo la matriz en la consola usando: X para los asientos ocupados y L para los asientos disponibles. Incluye números de fila y columna para mayor claridad.
 function mostrarSala(matrix: (0 | 1)[][]): void {
     // Imprime los números de columna
-    let header = ' ';
+    let header = '  ';
     for (let j = 0; j < matrix[0].length; j++) {
         header += j + ' ';
     }
@@ -34,11 +32,11 @@ function mostrarSala(matrix: (0 | 1)[][]): void {
         console.log(rowString);
     }
 }
-console.log("Estado inicial de la sala:");
-mostrarSala(salaCineAlpha);
 
+//**********Mejorar reservarAsiento para que muestre un mensaje con el asiento que se está intentando reservar y no picarlo a mano con cada asiento.*************
 //Implementa una función que permita reservar un asiento específico dado su número de fila y columna. La función debe verificar si el asiento está disponible antes de marcarlo como ocupado y devolver un mensaje indicando si la reserva fue exitosa o si el asiento ya estaba ocupado.
 function reservarAsiento(matrix: (0 | 1)[][], fila: number, columna: number): string {
+    console.log(`Comprobando si se puede reservar el asiento ${columna} de la fila ${fila}`);
     if (fila < 0 || fila >= matrix.length || columna < 0 || columna >= matrix[0].length) {
         return 'Asiento inválido';
     }
@@ -48,9 +46,7 @@ function reservarAsiento(matrix: (0 | 1)[][], fila: number, columna: number): st
     matrix[fila][columna] = 1;
     return 'Reserva exitosa';
 }
-console.log("Intentando reservar el asiento en la fila 2, columna 3:");
-console.log(reservarAsiento(salaCineAlpha, 2, 3));
-mostrarSala(salaCineAlpha);
+
 
 //Crear una funcion que cuente el número de asientos ocupados y disponibles en la sala.
 function contarAsientos(matrix: (0 | 1)[][]): { ocupados: number; disponibles: number } {
@@ -67,22 +63,41 @@ function contarAsientos(matrix: (0 | 1)[][]): { ocupados: number; disponibles: n
     }
     return { ocupados, disponibles };
 }
-console.log("Conteo de asientos:");
-console.log(contarAsientos(salaCineAlpha));
 
-mostrarSala(salaCineAlpha);
-
+//Mejorar que al encontrar los asientos muestre que asientos y filas son.
 //Implementa una función que busque dos asientos libres contiguos en la misma fila y devuelva sus posiciones. Si se encuenta varios pares consecutivos, devuelve el primero que encuentre. Si no hay asientos libres contiguos, devuelve un mensaje indicando que no se encontraron.
 function buscarAsientosContiguos(matrix: (0 | 1)[][]): { fila: number; columna1: number; columna2: number } | string {
     for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < matrix[i].length - 1; j++) {
             if (matrix[i][j] === 0 && matrix[i][j + 1] === 0) {
+                console.log(`Hay dos asientos contiguos en la fila ${i}, asientos ${j} y ${j + 1}`);
                 return { fila: i, columna1: j, columna2: j + 1 };
+                
             }
         }
     }
     return 'No se encontraron asientos contiguos libres';
 }
 
-console.log("Buscando asientos contiguos libres:");
-console.log(buscarAsientosContiguos(salaCineAlpha));
+function demo():void{
+    const salaCinePepe = salaCine();
+
+    console.log("Estado inicial de la sala");
+    mostrarSala(salaCinePepe);
+
+    //Mejorar reservarAsiento para que muestre un mensaje con el asiento que se está intentando reservar y no picarlo a mano con cada asiento.
+    console.log(reservarAsiento(salaCinePepe, 2, 3));
+    console.log(reservarAsiento(salaCinePepe, 2, 4));
+    console.log(reservarAsiento(salaCinePepe, 2, 5));
+    console.log(reservarAsiento(salaCinePepe, 4, 3));
+
+    mostrarSala(salaCinePepe);
+
+    console.log(contarAsientos(salaCinePepe));
+
+    console.log("Buscando asientos contiguos libres");
+    buscarAsientosContiguos(salaCinePepe);
+
+}
+
+demo();
