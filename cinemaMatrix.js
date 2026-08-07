@@ -41,5 +41,39 @@ function reservarAsiento(matrix, fila, columna) {
     matrix[fila][columna] = 1;
     return 'Reserva exitosa';
 }
-
+console.log("Intentando reservar el asiento en la fila 2, columna 3:");
+console.log(reservarAsiento(salaCineAlpha, 2, 3));
+mostrarSala(salaCineAlpha);
+//Crear una funcion que cuente el número de asientos ocupados y disponibles en la sala.
+function contarAsientos(matrix) {
+    let ocupados = 0;
+    let disponibles = 0;
+    for (const row of matrix) {
+        for (const seat of row) {
+            if (seat === 1) {
+                ocupados++;
+            }
+            else {
+                disponibles++;
+            }
+        }
+    }
+    return { ocupados, disponibles };
+}
+console.log("Conteo de asientos:");
+console.log(contarAsientos(salaCineAlpha));
+mostrarSala(salaCineAlpha);
+//Implementa una función que busque dos asientos libres contiguos en la misma fila y devuelva sus posiciones. Si se encuenta varios pares consecutivos, devuelve el primero que encuentre. Si no hay asientos libres contiguos, devuelve un mensaje indicando que no se encontraron.
+function buscarAsientosContiguos(matrix) {
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length - 1; j++) {
+            if (matrix[i][j] === 0 && matrix[i][j + 1] === 0) {
+                return { fila: i, columna1: j, columna2: j + 1 };
+            }
+        }
+    }
+    return 'No se encontraron asientos contiguos libres';
+}
+console.log("Buscando asientos contiguos libres:");
+console.log(buscarAsientosContiguos(salaCineAlpha));
 export {};

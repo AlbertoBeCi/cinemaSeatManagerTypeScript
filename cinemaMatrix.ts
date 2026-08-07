@@ -71,3 +71,18 @@ console.log("Conteo de asientos:");
 console.log(contarAsientos(salaCineAlpha));
 
 mostrarSala(salaCineAlpha);
+
+//Implementa una función que busque dos asientos libres contiguos en la misma fila y devuelva sus posiciones. Si se encuenta varios pares consecutivos, devuelve el primero que encuentre. Si no hay asientos libres contiguos, devuelve un mensaje indicando que no se encontraron.
+function buscarAsientosContiguos(matrix: (0 | 1)[][]): { fila: number; columna1: number; columna2: number } | string {
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length - 1; j++) {
+            if (matrix[i][j] === 0 && matrix[i][j + 1] === 0) {
+                return { fila: i, columna1: j, columna2: j + 1 };
+            }
+        }
+    }
+    return 'No se encontraron asientos contiguos libres';
+}
+
+console.log("Buscando asientos contiguos libres:");
+console.log(buscarAsientosContiguos(salaCineAlpha));
